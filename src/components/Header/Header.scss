@@ -1,17 +1,25 @@
+@import '../utils/colors.scss';
+
 .header {
-    color: #252c41;
-    background-color: #f4f5f9;
-    padding: 30px;
-  }
-  
-  .nav {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-item {
-    text-decoration: none;
-    color: #252c41;
-    font-size: 24px;
-    font-weight: 700;
-  }
+  color: $navy;
+  background-color: $gray-l;
+  padding: 30px;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: $navy;
+  font-size: 24px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  opacity: 1;
+}
