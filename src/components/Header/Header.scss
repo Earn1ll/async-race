@@ -1,3 +1,17 @@
-header {
-    color: slateblue;
-}
+.header {
+    color: #252c41;
+    background-color: #f4f5f9;
+    padding: 30px;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-item {
+    text-decoration: none;
+    color: #252c41;
+    font-size: 24px;
+    font-weight: 700;
+  }
