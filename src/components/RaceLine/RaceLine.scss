@@ -1,0 +1,7 @@
+@import './../utils/colors.scss';
+
+.race-line {
+    // box-sizing: border-box;
+    height: 100px;
+    border-bottom: 2px dashed $navy;
+  }

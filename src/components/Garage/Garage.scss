@@ -1,13 +1,16 @@
 @import '../utils/colors.scss';
 
 .garage {
-  height: 800px;
+  display: grid;
+  grid-template-rows: max-content max-content auto max-content;
+  min-height: 100%;
   background-color: $gray-d;
 }
 
 .garage-controls {
   display: flex;
   flex-direction: row;
+  min-height: 100%;
 }
 
 .garage-controls-2 {
@@ -17,4 +20,25 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
+}
+
+.garage-titles {
+  padding: 5px 30px;
+  background-color: $gray-l;
+}
+
+.garage-h1 {
+  margin: 0;
+  color: $navy;
+  font-size: 27px;
+}
+
+.garage-raceway {
+  height: 100%;
+  background-color: $gray-l;
+}
+
+.garage-pagination {
+  height: 35px;
+  background-color: $gray-d;
 }
