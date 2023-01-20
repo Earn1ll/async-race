@@ -1,7 +1,75 @@
 @import './../utils/colors.scss';
 
+.race-line-cont {
+  // box-sizing: border-box;
+  height: 95px;
+  border-bottom: 2px dashed $navy;
+  display: grid;
+  grid-template-rows: 30px 65px;
+}
+
+
+
+.car-select {
+  display: flex;
+  gap: 5px;
+  padding: 3px 20px;
+}
+
+.car-cont {
+  display: flex;
+}
+
+.start-stop {
+  display: grid;
+  padding: 5px 20px;
+  gap: 5px;
+}
+
+.car-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
 .race-line {
-    // box-sizing: border-box;
-    height: 100px;
-    border-bottom: 2px dashed $navy;
-  }
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.finish-svg {
+  position: absolute;
+  right: 10%;
+  height: 60px;
+}
+
+.select-car {
+  color: $navy;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 0;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 1px 1px 2px 0px rgba(34, 60, 80, 0.2);
+  cursor: pointer;
+}
+
+.select-car:hover {
+  opacity: 0.9;
+}
+
+.select-car:active {
+  background-color: $gray-d;
+}
+
+.start-car {
+  color: green;
+  font-weight: 900;
+}
+
+.stop-car {
+  color: $red;
+  font-weight: 900;
+}
