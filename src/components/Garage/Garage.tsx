@@ -7,16 +7,35 @@ import RaceBtn from "../Buttons/RaceButton/RaceButton";
 import ResetBtn from "../Buttons/ResetButton/ResetButton";
 import GenerateCarsBtn from "../Buttons/GenerateCarsButton/GenerateCarsButton";
 import Raceline from "../RaceLine/RaceLine";
+import { carList } from '../utils/CarNames/CarNames';
 
 // const items = [<Raceline />, <Raceline />, <Raceline />, <Raceline />, <Raceline />, <Raceline />];
 const items = [
-  ...Array(100)
+  ...Array(14)
     .fill(0)
-    .map(() => <Raceline />),
+    .map((item, idx) => <Raceline key={idx} name={'Audi'} />),
 ];
 
 
 export default function Garage() {
+  const generateCars = () => {
+    let arrCarNames = [];
+    while (arrCarNames.length < 10) {
+      let num1 = Math.floor(Math.random() * 296);
+      let num2 = Math.floor(Math.random() * Object.values(carList)[num1].length);
+      let Brand = Object.keys(carList)[num1];
+      let Model = Object.values(carList)[num1][num2];
+      arrCarNames.push(`${Brand} ${Model}`);
+    }
+    setCars({ arrCarNames });
+
+    console.log(arrCarNames);
+    console.log(cars);
+  };
+
+  const [cars, setCars] = useState<{ arrCarNames: string[] }>({
+    arrCarNames: [],
+  });
   return (
     <div className="garage">
       <div className="garage-controls">
@@ -27,7 +46,7 @@ export default function Garage() {
         <div className="garage-controls-2">
           <RaceBtn />
           <ResetBtn />
-          <GenerateCarsBtn />
+          <GenerateCarsBtn clickHandler={generateCars} />
         </div>
       </div>
       <div className="garage-titles">
