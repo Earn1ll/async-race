@@ -1,0 +1,19 @@
+@import './../../utils/colors.scss';
+
+.race-button {
+    color: $navy;
+    font-size: 24px;
+    border: 0;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
+    cursor: pointer;
+  }
+  
+  .race-button:hover {
+    opacity: 0.9;
+  }
+  
+  .race-button:active {
+    color: $red;
+  }

@@ -1,0 +1,19 @@
+@import './../../utils/colors.scss';
+
+.generate-cars-button {
+    color: $navy;
+    font-size: 22px;
+    border: 0;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
+    cursor: pointer;
+  }
+  
+  .generate-cars-button:hover {
+    opacity: 0.9;
+  }
+  
+  .generate-cars-button:active {
+    color: $red;
+  }
