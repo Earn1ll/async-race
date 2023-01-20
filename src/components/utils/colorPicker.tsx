@@ -1,6 +1,6 @@
 import React from 'react';
 import reactCSS from 'reactcss';
-import { ChromePicker } from 'react-color';
+import { ChromePicker, ColorResult } from 'react-color';
 
 class ColorPicker extends React.Component {
   state = {
@@ -21,7 +21,7 @@ class ColorPicker extends React.Component {
     this.setState({ displayColorPicker: false });
   };
 
-  handleChange = (color: { [index: string]: string }) => {
+  handleChange = (color: ColorResult) => {
     this.setState({ color: color.rgb });
   };
 

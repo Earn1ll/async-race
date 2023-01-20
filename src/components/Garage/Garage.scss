@@ -1,6 +1,20 @@
 @import '../utils/colors.scss';
 
 .garage {
-    height: 800px;
-    background-color: $gray-d;
-  }
+  height: 800px;
+  background-color: $gray-d;
+}
+
+.garage-controls {
+  display: flex;
+  flex-direction: row;
+}
+
+.garage-controls-2 {
+  padding: 10px;
+  width: 400px;
+  min-height: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}

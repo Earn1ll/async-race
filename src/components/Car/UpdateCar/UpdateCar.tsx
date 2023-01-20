@@ -1,4 +1,4 @@
-import './update-car.scss';
+import './UpdateCar.scss';
 import React, { useState } from 'react';
 import  {PopoverPicker}  from '../../utils/ColorPick/PopoverPicker';
 
