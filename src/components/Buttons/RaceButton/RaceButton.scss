@@ -1,6 +1,8 @@
 @import './../../utils/colors.scss';
 
 .race-button {
+      text-align: right;
+    padding-right: 15px;
     color: $navy;
     font-size: 24px;
     border: 0;
@@ -8,6 +10,11 @@
     background: #fff;
     box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
     cursor: pointer;
+
+    background-image: url('./race.png');
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: left center;
   }
   
   .race-button:hover {
