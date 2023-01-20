@@ -10,7 +10,7 @@ function Main() {
   return (
     <main className="main">
       <Routes>
-        <Route path="/" element={<Garage />} />
+        <Route index element={<Garage />} />
         <Route path="/garage" element={<Garage />} />
         <Route path="/winners" element={<Winners />} />
         <Route path="*" element={<NotFoundPage />} />
