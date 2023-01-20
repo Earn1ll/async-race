@@ -5,3 +5,8 @@ export interface IWinner {
     wins: number;
     bestTime: number;
   }
+
+  export type CarItem = {
+    name: string;
+    color: string;
+  };
