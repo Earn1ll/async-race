@@ -1,13 +1,13 @@
 import './RaceLine.scss';
 import CarInstance from '../Car/CarInstance/CarInstance';
 
-export default function Raceline() {
+export default function Raceline(props: { key: number; name: string }) {
   return (
     <div className="race-line-cont">
       <div className="car-select">
         <button className="select-car">Select</button>
         <button className="select-car">Remove</button>
-        <div className="car-title">Carname</div>
+        <div className="car-title">{props.name}</div>
       </div>
       <div className="car-cont">
         <div className="start-stop">
