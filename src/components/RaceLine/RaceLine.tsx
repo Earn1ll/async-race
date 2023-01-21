@@ -11,11 +11,21 @@ export default function Raceline(props: {
 }) {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
+  const [start, isStarted] = useState(false);
 
   useEffect(() => {
     setName(props.name);
     setColor(props.color);
   }, [props.name, props.color]);
+
+  const startButtonHandler = () => {
+    isStarted(true);
+  };
+
+  let startClassNames = 'select-car start-car';
+  if (start) {
+    startClassNames += ' start-pressed';
+  }
 
   return (
     <div className="race-line-cont">
@@ -30,7 +40,9 @@ export default function Raceline(props: {
       </div>
       <div className="car-cont">
         <div className="start-stop">
-          <button className="select-car start-car">Start</button>
+        <button className={startClassNames} onClick={startButtonHandler} disabled={start}>
+            Start
+          </button>
           <button className="select-car stop-car">Stop</button>
         </div>
         <div className="race-line">

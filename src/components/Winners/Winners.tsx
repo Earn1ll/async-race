@@ -50,7 +50,7 @@ function Winners() {
     <div className="winners">
       <div className="winners-titles">
         <h1 className="winners-h1">
-          Winners (<span id="total-winners-counter">0</span>)
+          Winners (<span>{winners.arrWinners.length}</span>)
         </h1>
       </div>
       <div className="winners-pagination">
@@ -58,8 +58,8 @@ function Winners() {
       </div>
       <div className="winners-list">
         <div className="winner-list-title">
-          <p className="wlt-item">Number</p>
-          <p className="wlt-item">Car</p>
+          <p className="wlt-item indent">Number</p>
+          <p className="wlt-item indent">Car</p>
           <p className="wlt-item">Name</p>
           <p className="wlt-item">Wins</p>
           <p className="wlt-item">Best time (seconds)</p>

@@ -4,7 +4,7 @@ import { IWinner } from '../../utils/types';
 export default function WinnerInstance(props: IWinner) {
     return (
       <div className="winner-instance-cont">
-        <p className="winner-instance-item indent ">{props.number}</p>
+        <p className="winner-instance-item indent50 ">{props.number}</p>
         <p className="winner-instance-item">
           <svg className="winner-instance-item-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.731 132.334">
             <path

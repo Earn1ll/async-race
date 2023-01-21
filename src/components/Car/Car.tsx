@@ -12,7 +12,7 @@ export default function CreateCar(props: { clickHandler: (arg0: string, arg1: st
   
     return (
       <div className="create-car">
-        <input placeholder="choose name" type="text" className="choice-name" onChange={inputHandler} />
+        <input placeholder="choose car name and color " type="text" className="choice-name" onChange={inputHandler} />
         <div className="create-choice-color">
         <PopoverPicker color={color} onChange={setColor} />
       </div>

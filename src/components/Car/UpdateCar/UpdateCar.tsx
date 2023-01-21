@@ -17,7 +17,7 @@ export default function UpdateCar(props: { name: string; color: string; clickHan
 
   return (
     <div className="update-car">
-      <input type="text" className="choice-name" onChange={inputHandler} value={inputValue} />
+      <input placeholder="update your car" type="text" className="choice-name" onChange={inputHandler} value={inputValue} />
       <div className="choice-color">
         <PopoverPicker color={color} onChange={setColor} />
       </div>
