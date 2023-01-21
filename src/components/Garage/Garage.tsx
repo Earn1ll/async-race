@@ -1,6 +1,6 @@
 import "./Garage.scss";
 import { CarItem } from "../utils/types";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import CreateCar from "../Car/Car";
 import UpdateCar from "../Car/UpdateCar/UpdateCar";
@@ -59,6 +59,13 @@ export default function Garage() {
     }));
   };
 
+  const removeCar = (name: string, color: string) => {
+    const idx = cars.arrCars.findIndex((item) => item.name === name && item.color === color);
+    setCars({
+      arrCars: [...cars.arrCars.slice(0, idx), ...cars.arrCars.slice(idx + 1)],
+    });
+  };
+
   const createCar = (color: string, inputValue: string) => {
     const item: CarItem = {
       name: inputValue,
@@ -104,14 +111,9 @@ export default function Garage() {
         </h1>
       </div>
       <div className="garage-raceway">
-        {currentItems &&
+      {currentItems &&
           currentItems.map((item: CarItem, idx: number) => (
-            <Raceline
-              key={idx + Math.random()}
-              name={item.name}
-              color={item.color}
-              selectButtonHandler={getSelectCar}
-            />
+            <Raceline key={idx + Math.random()} name={item.name} color={item.color} selectButtonHandler={getSelectCar} removeButtonHandler={removeCar} />
           ))}
       </div>
       <div className="garage-pagination">

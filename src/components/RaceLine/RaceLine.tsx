@@ -7,6 +7,7 @@ export default function Raceline(props: {
   name: string;
   color: string;
   selectButtonHandler: (name: string, color: string) => void;
+  removeButtonHandler: (name: string, color: string) => void;
 }) {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
@@ -22,7 +23,9 @@ export default function Raceline(props: {
       <button className="select-car" onClick={() => props.selectButtonHandler(name, color)}>
           Select
         </button>
-        <button className="select-car">Remove</button>
+        <button className="select-car" onClick={() => props.removeButtonHandler(name, color)}>
+          Remove
+        </button>
         <div className="car-title">{props.name}</div>
       </div>
       <div className="car-cont">
