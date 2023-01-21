@@ -37,15 +37,15 @@ export default function Garage() {
   };
 
   const generateCars = () => {
-    let arrCars = [];
-    while (arrCars.length < 100) {
+    let newCars: CarItem[] = [];
+    while (newCars.length < 100) {
       let num1 = Math.floor(Math.random() * 296);
       let num2 = Math.floor(
         Math.random() * Object.values(carList)[num1].length
       );
       let Brand = Object.keys(carList)[num1];
       let Model = Object.values(carList)[num1][num2];
-      arrCars.push({ name: `${Brand} ${Model}`, color: getRandomColor() });
+      newCars.push({ name: `${Brand} ${Model}`, color: getRandomColor() });
     }
 
     function getRandomColor() {
@@ -54,14 +54,28 @@ export default function Garage() {
       return randomColor;
     }
 
-    setCars({ arrCars });
+    setCars((previousState) => ({
+      arrCars: [...previousState.arrCars, ...newCars],
+    }));
+  };
+
+  const createCar = (color: string, inputValue: string) => {
+    const item: CarItem = {
+      name: inputValue,
+      color: color,
+    };
+    setCars((previousState) => ({
+      arrCars: [...previousState.arrCars, item],
+    }));
+
+    // console.log(`Create car: \n color - ${color} \n name - ${inputValue}`);
   };
 
   return (
     <div className="garage">
       <div className="garage-controls">
         <div className="garage-controls-1">
-          <CreateCar />
+          <CreateCar clickHandler={createCar} />
           <UpdateCar />
         </div>
         <div className="garage-controls-2">
