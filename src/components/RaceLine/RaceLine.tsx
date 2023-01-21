@@ -22,17 +22,12 @@ export default function Raceline(props: {
 
   const startButtonHandler = () => {
     isStarted(true);
+    console.log('press start button');
   };
 
   const stopButtonHandler = () => {
-    console.log('press stop');
-    Api.getResource('/winners')
-      .then((body) => {
-        console.log(body);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log('press stop button');
+  ;
   };
 
   let startClassNames = 'select-car start-car';

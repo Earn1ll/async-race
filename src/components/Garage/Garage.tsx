@@ -9,6 +9,7 @@ import ResetBtn from "../Buttons/ResetButton/ResetButton";
 import GenerateCarsBtn from "../Buttons/GenerateCarsButton/GenerateCarsButton";
 import Raceline from "../RaceLine/RaceLine";
 import { carList } from "../utils/CarNames/CarNames";
+import ARApi from "../utils/async-race-api";
 
 export default function Garage() {
   const [cars, setCars] = useState<{ arrCars: CarItem[] }>({
@@ -23,6 +24,7 @@ export default function Garage() {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 7;
+  const Api = new ARApi();
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -59,13 +61,6 @@ export default function Garage() {
     }));
   };
 
-  const removeCar = (name: string, color: string) => {
-    const idx = cars.arrCars.findIndex((item) => item.name === name && item.color === color);
-    setCars({
-      arrCars: [...cars.arrCars.slice(0, idx), ...cars.arrCars.slice(idx + 1)],
-    });
-  };
-
   const createCar = (color: string, inputValue: string) => {
     const item: CarItem = {
       name: inputValue,
@@ -74,6 +69,7 @@ export default function Garage() {
     setCars((previousState) => ({
       arrCars: [...previousState.arrCars, item],
     }));
+    Api.createCar({ name: inputValue, color: color });
   };
 
   const [colorSC, setColorSC] = useState('#aabbcc');
@@ -90,6 +86,15 @@ export default function Garage() {
     setCars({
       arrCars: [(cars.arrCars[idx] = { name: name, color: color }), ...cars.arrCars].slice(1),
     });
+    Api.updateCar(2, { name: 'Mashina', color: 'Rozoviy' });
+  };
+
+  const removeCar = (name: string, color: string) => {
+    const idx = cars.arrCars.findIndex((item) => item.name === name && item.color === color);
+    setCars({
+      arrCars: [...cars.arrCars.slice(0, idx), ...cars.arrCars.slice(idx + 1)],
+    });
+    Api.deleteCar(4);
   };
 
   return (
