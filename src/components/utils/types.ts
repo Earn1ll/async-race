@@ -10,3 +10,9 @@ export interface IWinner {
     name: string;
     color: string;
   };
+
+  export interface iWinnerApi {
+    id?: number;
+    wins: number;
+    time: number;
+  }

@@ -1,15 +1,13 @@
-import { CarItem } from "./types";
+import { CarItem,iWinnerApi } from "./types";
 
 export default class ARApi {
     apiBase = 'http://127.0.0.1:3000';
   
     async getResource(url: string) {
       const res = await fetch(`${this.apiBase}${url}`);
-  
       if (!res.ok) {
         throw new Error(`\n URL ошибки: ${url} \n Статус ошибки: ${res.status}`);
       }
-  
       return await res.json();
     }
 
@@ -49,5 +47,35 @@ export default class ARApi {
   
     async getWinners() {
       return await this.getResource(`/winners`);
+    }
+
+    async getWinner(id: number) {
+      return await this.getResource(`/winners/${id}`);
+    }
+  
+    async createWinner(winner: iWinnerApi) {
+      await fetch(`${this.apiBase}/winners`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(winner),
+      });
+    }
+  
+    async deleteWinner(id: number) {
+      await fetch(`${this.apiBase}/winners/${id}`, {
+        method: 'DELETE',
+      });
+    }
+  
+    async updateWinner(id: number, winner: iWinnerApi) {
+      await fetch(`${this.apiBase}/winners/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(winner),
+      });
     }
   }
