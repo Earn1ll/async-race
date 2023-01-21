@@ -69,9 +69,20 @@ export default function Garage() {
     }));
   };
 
+  const [colorSC, setColorSC] = useState('#aabbcc');
+  const [inputValueSC, setInputSC] = useState('');
+
   const getSelectCar = (name: string, color: string) => {
-    console.log("garage");
-    console.log(name, color);
+    setInputSC(name);
+    setColorSC(color);
+  };
+
+  const updateCar = (name: string, color: string) => {
+    const idx = cars.arrCars.findIndex((item) => item.color === colorSC && item.name === inputValueSC);
+
+    setCars({
+      arrCars: [(cars.arrCars[idx] = { name: name, color: color }), ...cars.arrCars].slice(1),
+    });
   };
 
   return (
@@ -79,7 +90,7 @@ export default function Garage() {
       <div className="garage-controls">
         <div className="garage-controls-1">
           <CreateCar clickHandler={createCar} />
-          <UpdateCar />
+          <UpdateCar name={inputValueSC} color={colorSC} clickHandler={updateCar} />
         </div>
         <div className="garage-controls-2">
           <RaceBtn />
