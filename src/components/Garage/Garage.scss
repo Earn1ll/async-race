@@ -54,35 +54,33 @@
 }
 
 .garage-pagination li {
-  li {
-    width: 30px;
-    height: 30px;
-    list-style: none;
-    background-color: #fff;
-    border-radius: 5px;
-  }
+  width: 30px;
+  height: 30px;
+  list-style: none;
+  background-color: #fff;
+  border-radius: 5px;
+}
 
-  .garage-pagination li:first-child,
-  .garage-pagination li:last-child {
-    width: 50px;
-  }
+.garage-pagination li:first-child,
+.garage-pagination li:last-child {
+  width: 50px;
+}
 
-  .garage-pagination li:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-  }
+.garage-pagination li:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
-  .garage-pagination a {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-  }
+.garage-pagination a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
 
-  .garage-pagination .selected {
-    background-color: $gray-l;
-    box-shadow: 2px 2px 4px 0px rgba(34, 60, 80, 0.2);
-  }
+.garage-pagination .selected {
+  background-color: $gray-l;
+  box-shadow: 2px 2px 4px 0px rgba(34, 60, 80, 0.2);
 }

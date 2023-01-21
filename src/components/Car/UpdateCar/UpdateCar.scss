@@ -22,3 +22,19 @@
     padding-bottom: 2px;
     margin-left: 5px;
 }
+
+.update-button {
+  border: 0;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 1px 1px 4px 0px rgba(34, 60, 80, 0.2);
+  cursor: pointer;
+}
+
+.update-button:hover {
+  opacity: 0.8;
+}
+
+.update-button:active {
+  color: $gray-d;
+}
