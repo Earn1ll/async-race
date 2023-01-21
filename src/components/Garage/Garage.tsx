@@ -67,8 +67,11 @@ export default function Garage() {
     setCars((previousState) => ({
       arrCars: [...previousState.arrCars, item],
     }));
+  };
 
-    // console.log(`Create car: \n color - ${color} \n name - ${inputValue}`);
+  const getSelectCar = (name: string, color: string) => {
+    console.log("garage");
+    console.log(name, color);
   };
 
   return (
@@ -96,6 +99,7 @@ export default function Garage() {
               key={idx + Math.random()}
               name={item.name}
               color={item.color}
+              selectButtonHandler={getSelectCar}
             />
           ))}
       </div>
