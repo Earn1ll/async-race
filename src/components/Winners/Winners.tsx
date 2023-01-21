@@ -1,18 +1,13 @@
 import './Winners.scss';
 import { useEffect, useState } from 'react';
-import { IWinner } from '../utils/types';
+import { IWinner,iWinnerApi } from '../utils/types';
 import ReactPaginate from 'react-paginate';
 import WinnerInstance from '../Winners/WinnersInstance/WinnersInstance';
+import ARApi from '../utils/async-race-api';
 
-const randomCars: Array<IWinner> = Array(12).fill({
-  number: 1,
-  color: 'red',
-  name: 'McQueen ',
-  wins: 3,
-  bestTime: 1.45,
-});
+export default function Winners() {
+  const Api = new ARApi();
 
-function Winners() {
   const [winners, setWinners] = useState<{ arrWinners: IWinner[] }>({
     arrWinners: [],
   });
@@ -42,9 +37,28 @@ function Winners() {
 
   /*temporary array of winners*/
   useEffect(() => {
-    setWinners({
-      arrWinners: randomCars,
-    });
+    Api.getWinners()
+      .then((body) => {
+        body.forEach((item: iWinnerApi, idx: number) => {
+          Api.getCar(item.id!).then((data) => {
+            setWinners((previousState) => ({
+              arrWinners: [
+                ...previousState.arrWinners,
+                {
+                  number: idx + 1,
+                  color: data.color,
+                  name: data.name,
+                  wins: item.wins,
+                  bestTime: item.time,
+                },
+              ],
+            }));
+          });
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   return (
     <div className="winners">
@@ -74,5 +88,3 @@ function Winners() {
     </div>
   );
 }
-
-export default Winners;

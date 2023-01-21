@@ -7,6 +7,18 @@ export default function ResetBtn() {
   const resetButtonHandler = () => {
     console.log('State of winners (on server):');
 
+    Api.createWinner({
+      id: 7,
+      wins: 4,
+      time: 17,
+    });
+
+    Api.createWinner({
+      id: 12,
+      wins: 3,
+      time: 21,
+    });
+
     Api.getWinners()
       .then((body) => {
         console.log(body);

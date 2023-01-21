@@ -32,8 +32,6 @@ export default function Raceline(props: {
       });
   };
 
-  
-
   const stopButtonHandler = () => {
     console.log('press stop button');
     Api.switchEngineToDriveMode(2)
@@ -43,7 +41,7 @@ export default function Raceline(props: {
       .catch((err) => {
         console.log(err);
       });
-  ;
+      isStarted(false);
   };
 
   let startClassNames = 'select-car start-car';
