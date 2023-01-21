@@ -49,6 +49,36 @@ export default class ARApi {
       return await this.getResource(`/winners`);
     }
 
+    async startEngine(id: number) {
+      const res = await fetch(`${this.apiBase}/engine?id=${id}&status=started`, {
+        method: 'PATCH',
+      });
+      if (!res.ok) {
+        throw new Error(`Статус ошибки: ${res.status}`);
+      }
+      return await res.json();
+    }
+  
+    async stopEngine(id: number) {
+      const res = await fetch(`${this.apiBase}/engine?id=${id}&status=stopped`, {
+        method: 'PATCH',
+      });
+      if (!res.ok) {
+        throw new Error(`Статус ошибки: ${res.status}`);
+      }
+      return await res.json();
+    }
+  
+    async switchEngineToDriveMode(id: number) {
+      const res = await fetch(`${this.apiBase}/engine?id=${id}&status=drive`, {
+        method: 'PATCH',
+      });
+      if (!res.ok) {
+        throw new Error(`Статус ошибки: ${res.status}`);
+      }
+      return await res.json();
+    }
+
     async getWinner(id: number) {
       return await this.getResource(`/winners/${id}`);
     }

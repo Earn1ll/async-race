@@ -55,10 +55,10 @@ export default function Garage() {
       const randomColor = `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
       return randomColor;
     }
-
     setCars((previousState) => ({
       arrCars: [...previousState.arrCars, ...newCars],
     }));
+    newCars.forEach((car) => Api.createCar(car));
   };
 
   const createCar = (color: string, inputValue: string) => {
