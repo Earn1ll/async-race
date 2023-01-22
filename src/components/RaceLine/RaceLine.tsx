@@ -1,5 +1,5 @@
 import "./RaceLine.scss";
-import { useEffect, useState, useMemo, } from "react";
+import React, { useEffect, useState, useMemo, RefObject } from "react";
 import CarInstance from "../Car/CarInstance/CarInstance";
 import ARApi from '../utils/async-race-api';
 
@@ -11,9 +11,15 @@ export default function Raceline(props: {
   removeButtonHandler: (name: string, color: string) => void;
 }) {
   const Api = useMemo(() => new ARApi(), []);
+
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [start, isStarted] = useState(false);
+
+  const [distance, setDistance] = useState('0px');
+  const [time, setTime] = useState(0);
+
+  const racelineRef: RefObject<HTMLDivElement> = React.createRef();
 
   useEffect(() => {
     setName(props.name);
@@ -22,15 +28,28 @@ export default function Raceline(props: {
 
   const startButtonHandler = () => {
     console.log('press start button');
-    Api.startEngine(2)
-      .then((body) => {
-        isStarted(true);
+    Api.startEngine(2).then((body) => {
+      isStarted(true);
+      setTime(body.distance / body.velocity);
+      setDistance(`${racelineRef.current!.offsetWidth * 0.9}px`);
+
+      let time = body.distance / (body.velocity * 1000);
+      const drive = setInterval(() => {
+        time -= 0.1;
+        console.log('brr ' + Math.round(time * 100) / 100);
+      }, 100);
+      console.log('raceline width: ' + racelineRef.current?.offsetWidth);
+      console.log('speed: ' + body.velocity);
+      
+      Api.switchEngineToDriveMode(2).then((body) => {
+        clearInterval(drive);
         console.log(body);
       })
-      .catch((err) => {
-        console.log(err);
+      Api.stopEngine(2).then((bodyF) => {
+        console.log('speed: ' + bodyF.velocity);
       });
-  };
+      isStarted(false);
+  });
 
   const stopButtonHandler = () => {
     console.log('press stop button');
@@ -71,8 +90,8 @@ export default function Raceline(props: {
             Stop
           </button>
         </div>
-        <div className="race-line">
-          <CarInstance color={props.color} />
+        <div className="race-line" ref={racelineRef}>
+        <CarInstance color={props.color} time={time} distance={distance} />
           <svg
             className="finish-svg"
             xmlns="http://www.w3.org/2000/svg"
@@ -84,4 +103,5 @@ export default function Raceline(props: {
       </div>
     </div>
   );
+}
 }
