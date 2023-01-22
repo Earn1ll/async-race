@@ -17,8 +17,8 @@ export default function Garage() {
   });
   const [currentItems, setCurrentItems] = useState([
     {
-      name: "name",
-      color: "color",
+      name: 'name',
+      color: 'color',
     },
   ]);
   const [pageCount, setPageCount] = useState(0);
@@ -33,8 +33,7 @@ export default function Garage() {
   }, [itemOffset, itemsPerPage, cars]);
 
   const handlePageClick = (event: { selected: number }) => {
-    const newOffset =
-      (event.selected * itemsPerPage) % Object.keys(cars.arrCars).length;
+    const newOffset = (event.selected * itemsPerPage) % Object.keys(cars.arrCars).length;
     setItemOffset(newOffset);
   };
 
@@ -42,9 +41,7 @@ export default function Garage() {
     let newCars: CarItem[] = [];
     while (newCars.length < 100) {
       let num1 = Math.floor(Math.random() * 296);
-      let num2 = Math.floor(
-        Math.random() * Object.values(carList)[num1].length
-      );
+      let num2 = Math.floor(Math.random() * Object.values(carList)[num1].length);
       let Brand = Object.keys(carList)[num1];
       let Model = Object.values(carList)[num1][num2];
       newCars.push({ name: `${Brand} ${Model}`, color: getRandomColor() });
@@ -55,9 +52,14 @@ export default function Garage() {
       const randomColor = `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
       return randomColor;
     }
+
     setCars((previousState) => ({
       arrCars: [...previousState.arrCars, ...newCars],
     }));
+
+    // console.log('-----------------');
+    // console.log(cars);
+    // console.log(currentItems);
     newCars.forEach((car) => Api.createCar(car));
   };
 
@@ -82,7 +84,6 @@ export default function Garage() {
 
   const updateCar = (name: string, color: string) => {
     const idx = cars.arrCars.findIndex((item) => item.color === colorSC && item.name === inputValueSC);
-
     setCars({
       arrCars: [(cars.arrCars[idx] = { name: name, color: color }), ...cars.arrCars].slice(1),
     });
@@ -94,6 +95,8 @@ export default function Garage() {
     setCars({
       arrCars: [...cars.arrCars.slice(0, idx), ...cars.arrCars.slice(idx + 1)],
     });
+
+    // Api.deleteCar(idx);
     Api.deleteCar(4);
   };
 
@@ -116,21 +119,13 @@ export default function Garage() {
         </h1>
       </div>
       <div className="garage-raceway">
-      {currentItems &&
+        {currentItems &&
           currentItems.map((item: CarItem, idx: number) => (
             <Raceline key={idx + Math.random()} name={item.name} color={item.color} selectButtonHandler={getSelectCar} removeButtonHandler={removeCar} />
           ))}
       </div>
       <div className="garage-pagination">
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel="prev"
-          renderOnZeroPageCount={() => null}
-        />
+        <ReactPaginate breakLabel="..." nextLabel="next" onPageChange={handlePageClick} pageRangeDisplayed={5} pageCount={pageCount} previousLabel="prev" renderOnZeroPageCount={() => null} />
       </div>
     </div>
   );
