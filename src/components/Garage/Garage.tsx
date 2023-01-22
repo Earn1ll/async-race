@@ -56,12 +56,9 @@ export default function Garage() {
     setCars((previousState) => ({
       arrCars: [...previousState.arrCars, ...newCars],
     }));
-
-    // console.log('-----------------');
-    // console.log(cars);
-    // console.log(currentItems);
     newCars.forEach((car) => Api.createCar(car));
   };
+  
 
   const createCar = (color: string, inputValue: string) => {
     const item: CarItem = {

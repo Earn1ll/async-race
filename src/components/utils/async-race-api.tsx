@@ -74,10 +74,6 @@ export default class ARApi {
     } else if (res.status === 500) {
       return 'stopped';
     }
-    // if (!res.ok) {
-    //   throw new Error(`Статус ошибки: ${res.status}`);
-    // }
-    // return await res.json();
   }
 
   async getWinners() {

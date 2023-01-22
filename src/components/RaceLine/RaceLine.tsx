@@ -1,5 +1,5 @@
 import "./RaceLine.scss";
-import React, { useEffect, useState, useMemo, RefObject } from "react";
+import React, { useEffect, useState, RefObject } from "react";
 import CarInstance from "../Car/CarInstance/CarInstance";
 import ARApi from '../utils/async-race-api';
 
