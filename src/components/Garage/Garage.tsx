@@ -10,6 +10,7 @@ import GenerateCarsBtn from "../Buttons/GenerateCarsButton/GenerateCarsButton";
 import Raceline from "../RaceLine/RaceLine";
 import { carList } from "../utils/CarNames/CarNames";
 import ARApi from "../utils/async-race-api";
+import Popup from "../Popup/Popup";
 
 export default function Garage() {
   const [cars, setCars] = useState<{ arrCars: CarItem[] }>({
@@ -25,6 +26,8 @@ export default function Garage() {
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 7;
   const Api = new ARApi();
+  const [resetRace, setResetRace] = useState(false);
+  const [resultVisible, setResultVisible] = useState(false);
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -93,7 +96,6 @@ export default function Garage() {
       arrCars: [...cars.arrCars.slice(0, idx), ...cars.arrCars.slice(idx + 1)],
     });
 
-    // Api.deleteCar(idx);
     Api.deleteCar(4);
   };
 
@@ -106,7 +108,7 @@ export default function Garage() {
         </div>
         <div className="garage-controls-2">
           <RaceBtn />
-          <ResetBtn />
+          <ResetBtn setResetRace={setResetRace} />
           <GenerateCarsBtn clickHandler={generateCars} />
         </div>
       </div>
@@ -118,8 +120,9 @@ export default function Garage() {
       <div className="garage-raceway">
         {currentItems &&
           currentItems.map((item: CarItem, idx: number) => (
-            <Raceline key={idx + Math.random()} name={item.name} color={item.color} selectButtonHandler={getSelectCar} removeButtonHandler={removeCar} />
+            <Raceline key={idx + Math.random()} name={item.name} color={item.color} selectButtonHandler={getSelectCar} removeButtonHandler={removeCar} resetRace={resetRace} />
           ))}
+          <Popup popupVisible={resultVisible} setPopupVisible={setResultVisible} children={<p>Pobeda!</p>} />
       </div>
       <div className="garage-pagination">
         <ReactPaginate breakLabel="..." nextLabel="next" onPageChange={handlePageClick} pageRangeDisplayed={5} pageCount={pageCount} previousLabel="prev" renderOnZeroPageCount={() => null} />
