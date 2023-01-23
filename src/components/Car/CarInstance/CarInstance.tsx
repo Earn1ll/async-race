@@ -1,40 +1,12 @@
-import React, { RefObject, useEffect, useState} from 'react';
+import  { RefObject} from 'react';
 import './CarInstance.scss';
 
-export default function CarInstance(props: { color: string; time: number; distance: string; isStarted: boolean }) {
-  const carRef: RefObject<SVGSVGElement> = React.createRef();
-  const carBodyRef: RefObject<SVGPathElement> = React.createRef();
 
-  const setColor = (color: string) => {
-    carBodyRef.current!.style.fill = color;
-  };
-
-  const [distance, setDistance] = useState('0px');
-  const [time, setTime] = useState(0);
-  const [start, isStarted] = useState(false);
-
-  useEffect(() => {
-    setColor(props.color);
-  });
-
-  useEffect(() => {
-    setDistance(props.distance);
-    setTime(props.time);
-    isStarted(props.isStarted);
-
-    const carAnim = carRef.current!.animate([{ transform: 'translateX(0)' }, { transform: `translateX(${distance})` }], {
-      duration: time,
-      iterations: 1,
-      fill: 'forwards',
-    });
-
-    start === false ? carAnim.pause() : carAnim.play();
-  }, [distance, time, start, props.distance, props.time, props.isStarted, carRef]);
-
+export default function CarInstance(props: { color: string; carRef: RefObject<SVGSVGElement> }) {
   return (
-    <svg ref={carRef} className="car-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.731 132.334">
+    <svg ref={props.carRef} className="car-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.731 132.334">
       <path
-        ref={carBodyRef}
+        fill={props.color}
         className="car-body"
         d="M.607 58.179C.9 49.677 8.505 37.711 11.002 34.014c-1.747-2.747-2.56-4.837-1.679-6.508.945-1.775 3.122-1.775 3.835-1.775 1.311 0 2.981.238 4.921.511 4.484.644 11.108 1.311 16.522.307 11.101-2.04 26.301-3.212 41.71-3.212 3.98 0 7.722.088 11.064.236 12.58.525 35.133-5.526 64.106-13.369l10.856-2.929c14.42-3.875 25.543-5.839 33.057-5.839 3.972 0 6.2.557 7.435 1.146a8.51 8.51 0 0 1 2.424-.378c4.08 0 5.947 3.392 6.652 6.313 2.172-.158 3.651 1.08 4.572 2.268 3.463-.244 4.998 2.048 5.134 2.3l.27.457v19.791c7.017 1.748 44.818 3.985 73.51 5.32a10.52 10.52 0 0 1-2.07-2.779c-1.642-3.169-1.265-6.458-.756-8.459l-31.643-13.908-.23-.946c-.046-.207-1.162-5.033 1.743-8.716C264.445 1.297 267.75 0 272.257 0c1.294 0 2.741.106 4.366.345 16.336 2.404 81.908 32.959 88.01 35.814 77.555 3.061 125.922 43.217 126.41 43.622l.688.593v22.185l-.41.521c-9.49 12.351-45.105 17.816-77.938 19.091.517-.677 1.05-1.334 1.531-2.048.441-.645.816-1.326 1.218-1.991 4.04-6.696 6.412-14.491 6.412-22.862 0-24.481-19.917-44.4-44.402-44.4-24.483 0-44.4 19.919-44.4 44.4 0 6.645 1.507 12.916 4.128 18.582.314.674.63 1.358.974 2.008.361.689.764 1.351 1.162 2.016-33.552-1.578-99.989-1.839-160.359-2.067-21.696-.093-42.899-.169-62.087-.309.345-.634.625-1.303.942-1.952.312-.652.656-1.29.941-1.955a46.867 46.867 0 0 0 3.811-18.522c0-25.974-21.135-47.107-47.104-47.107-25.972 0-47.103 21.133-47.103 47.107 0 5.021.806 9.858 2.272 14.395.26.813.572 1.611.881 2.408.297.766.598 1.535.926 2.284-10.086-2.376-18-6.684-23.52-12.991-11.16-12.76-9.834-29.95-9.2-38.228.101-1.073.17-2.025.201-2.76z"
       />
