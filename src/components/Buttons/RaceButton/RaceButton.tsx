@@ -6,7 +6,6 @@ export default function RaceBtn() {
 
   const raceButtonHandler = () => {
     console.log('State of garage (on server):');
-
     Api.getCars()
       .then((body) => {
         console.log(body);

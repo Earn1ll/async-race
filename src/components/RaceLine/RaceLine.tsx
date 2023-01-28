@@ -41,7 +41,6 @@ export default function Raceline(props: {
     if (start === false && carAnim.current) {
       carAnim.current.pause();
     }
-    // start === false ? carAnim.current.pause() : carAnim.current.play();
   }, [start, distance, time]);
 
   useEffect(() => {
@@ -52,16 +51,13 @@ export default function Raceline(props: {
   }, [props.resetRace]);
 
   const startButtonHandler = () => {
-    console.log('press start button');
     Api.startEngine(2).then((body) => {
       setTime(body.distance / body.velocity);
       setDistance(`${racelineRef.current!.offsetWidth * 0.9}px`);
       isStarted(true);
 
       Api.switchEngineToDriveMode(2).then((body) => {
-        console.log(body);
         Api.stopEngine(2).then((bodyF) => {
-          console.log('speed: ' + bodyF.velocity);
           carAnim.current!.pause();
           isStarted(false);
         });
@@ -70,9 +66,7 @@ export default function Raceline(props: {
   };
 
   const stopButtonHandler = () => {
-    console.log('press stop button');
     Api.stopEngine(2).then((body) => {
-      console.log(body);
       carAnim.current!.pause();
       isStarted(false);
     });

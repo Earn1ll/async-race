@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './Main.scss';
 import Garage from '../Garage/Garage';
